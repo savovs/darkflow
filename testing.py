@@ -20,6 +20,8 @@ PREDICTIONS_PATH = './predictions/'
 LABELS = ['air_conditioner', 'car_horn', 'children_playing', 'dog_bark', 'drilling', 'engine_idling', 'gun_shot', 'jackhammer', 'siren', 'street_music']
 
 
+# Txt files for average precision evaluation
+# https://github.com/Cartucho/mAP
 def write_ground_truth_txt(read_path, write_path):
     result_string = ''
     if os.path.exists(read_path):
@@ -30,7 +32,6 @@ def write_ground_truth_txt(read_path, write_path):
         y_maxes = dom.findall('object/bndbox/ymax')
         x_maxes = dom.findall('object/bndbox/xmax')
         y_mins = dom.findall('object/bndbox/ymin')
-
         
         for index, name in enumerate(names):
             result_string += '{} {} {} {} {}\n'.format(name.text, x_mins[index].text, y_maxes[index].text, x_maxes[index].text, y_mins[index].text)
@@ -42,7 +43,7 @@ def write_ground_truth_txt(read_path, write_path):
         eval_ground_truth_text_file.write(result_string)
         eval_ground_truth_text_file.close()
 
-# Get the audio directory path, place yours here
+# Get the audio directory path
 test_path = os.path.dirname(TEST_PATH)
 
 file_names = []
@@ -81,8 +82,6 @@ for image_path, xml_path in zip(image_paths, xml_paths):
     img = cv2.imread(image_path)
     predictions = tfnet.return_predict(img)
 
-    
-    
     if len(predictions) > 0:
         name = image_path.split(slash)[-1]
         xml_name = name.replace('.jpg', '.xml')

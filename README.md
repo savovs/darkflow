@@ -1,10 +1,19 @@
 ## Intro
-Training: `python flow --model cfg/tiny-yolo-sound.cfg --load bin/tiny-yolo-voc.weights --train --annotation C:\Users\VESELINOVVLADISLAVSA\Documents\GitHub\sound-detection\data\train\annotations --dataset C:\Users\VESELINOVVLADISLAVSA\Documents\GitHub\sound-detection\data\train\images --gpu 0.8 --epoch 100 --summary tensorboard`
+Forked from the original Darkflow repository, added configs for audio detection and two test files.
+`test-overfit.py` is just used to check if the network works on a small dataset (by overfitting)
+`test.py` produces predictions using a big dataset
 
-Test Training overfitting 10 images: `python flow --model cfg/tiny-yolo-sound-overfit-test.cfg --load bin/tiny-yolo-voc.weights --train --annotation C:\Users\VESELINOVVLADISLAVSA\Documents\GitHub\sound-detection\data\overfit\annotations --dataset C:\Users\VESELINOVVLADISLAVSA\Documents\GitHub\sound-detection\data\overfit\images --gpu 0.8 --epoch 300`
+Each of the files above has constants (usually paths to directories) that need to be set up for them to work.
+
+Training on a big dataset (using the GPU requires TensorFlow GPU support: https://www.tensorflow.org/install/install_windows):
+`python flow --model cfg/tiny-yolo-sound.cfg --load bin/tiny-yolo-voc.weights --train --annotation C:\path\to\annotations --dataset C:\path\to\images --gpu 0.8 --epoch 100 --summary tensorboard`
+
+Test Training overfitting small amount of images to check if network works: 
+`python flow --model cfg/tiny-yolo-sound-overfit-test.cfg --load bin/tiny-yolo-voc.weights --train --annotation C:\Users\VESELINOVVLADISLAVSA\Documents\GitHub\sound-detection\data\overfit\annotations --dataset C:\Users\VESELINOVVLADISLAVSA\Documents\GitHub\sound-detection\data\overfit\images --gpu 0.8 --epoch 300`
 
 TensorBoard: `tensorboard --logdir=tensorboardtrain`
 
+### Default Darkflow Readme:
 Real-time object detection and classification. Paper: [version 1](https://arxiv.org/pdf/1506.02640.pdf), [version 2](https://arxiv.org/pdf/1612.08242.pdf).
 
 Read more about YOLO (in darknet) and download weight files [here](http://pjreddie.com/darknet/yolo/). In case the weight file cannot be found, I uploaded some of mine [here](https://drive.google.com/drive/folders/0B1tW_VtY7onidEwyQ2FtQVplWEU), which include `yolo-full` and `yolo-tiny` of v1.0, `tiny-yolo-v1.1` of v1.1 and `yolo`, `tiny-yolo-voc` of v2.
