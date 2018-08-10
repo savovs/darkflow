@@ -5,6 +5,10 @@
 # Weight files
 bin/
 
+# Predictions and plots
+tensorboardtrain/
+predictions/
+
 # Sample image data
 sample_img/*.jpg
 !sample_img/sample_*.jpg

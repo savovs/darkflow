@@ -85,6 +85,7 @@ def return_predict(self, im):
     boxes = self.framework.findboxes(out)
     threshold = self.FLAGS.threshold
     boxesInfo = list()
+
     for box in boxes:
         tmpBox = self.framework.process_box(box, h, w, threshold)
         if tmpBox is None:

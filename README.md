@@ -1,6 +1,9 @@
 ## Intro
+Training: `python flow --model cfg/tiny-yolo-sound.cfg --load bin/tiny-yolo-voc.weights --train --annotation C:\Users\VESELINOVVLADISLAVSA\Documents\GitHub\sound-detection\data\train\annotations --dataset C:\Users\VESELINOVVLADISLAVSA\Documents\GitHub\sound-detection\data\train\images --gpu 0.8 --epoch 100 --summary tensorboard`
 
-[![Build Status](https://travis-ci.org/thtrieu/darkflow.svg?branch=master)](https://travis-ci.org/thtrieu/darkflow) [![codecov](https://codecov.io/gh/thtrieu/darkflow/branch/master/graph/badge.svg)](https://codecov.io/gh/thtrieu/darkflow)
+Test Training overfitting 10 images: `python flow --model cfg/tiny-yolo-sound-overfit-test.cfg --load bin/tiny-yolo-voc.weights --train --annotation C:\Users\VESELINOVVLADISLAVSA\Documents\GitHub\sound-detection\data\overfit\annotations --dataset C:\Users\VESELINOVVLADISLAVSA\Documents\GitHub\sound-detection\data\overfit\images --gpu 0.8 --epoch 300`
+
+TensorBoard: `tensorboard --logdir=tensorboardtrain`
 
 Real-time object detection and classification. Paper: [version 1](https://arxiv.org/pdf/1506.02640.pdf), [version 2](https://arxiv.org/pdf/1612.08242.pdf).
 
